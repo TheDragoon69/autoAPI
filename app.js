@@ -103,7 +103,7 @@ function automatedCall(){
         method: 'GET',
         headers : {
             "Accept": "application/json",
-            "Authorization": "Basic a29uc21qYXpTRUFEOmNhNWY4YmZhLTE2YWEtNDM1ZS1hMWQ0LWZkZGU4YzgxMjc4MQ=="
+            "Authorization": "Basic QVBJS010ZXN0Ojg1ODk3NDVmLTFiYTUtNDdkNy1iMGQ0LWNjZWJmN2ZmZjIyYw=="
         }
     }, 
     function(error, response){
