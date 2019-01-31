@@ -138,6 +138,9 @@ function automatedCall(){
 
 
 //Initialize the server on port:3000
-app.listen(8080, function(){
-    console.log("starting server");
-});
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
+app.listen(port);
+
