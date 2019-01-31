@@ -1,0 +1,23 @@
+<%- include('head.ejs') -%>
+<body class='resp'>  
+<div class="container">
+    <% for (var key in data) { %>
+        <% if (data.hasOwnProperty(key)) { %>
+            <% if (data[key]) { %>   
+                <ul>
+                    <li>
+                        <strong><%= key.toUpperCase() %>:</strong>  <span><%= data[key] %></span>
+                    </li>
+                </ul>
+            <% } %>
+        <% } %>
+    <% } %>
+</div>
+
+<!-- <%- include('footer.ejs') -%>
+
+// for (var key in data) {
+    //     if (data.hasOwnProperty(key)) {
+    //         res.write(key + " -> " + data[key]+" ");
+    //     }
+    // } -->

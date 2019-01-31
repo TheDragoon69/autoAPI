@@ -1,0 +1,90 @@
+<%- include('head.ejs') -%>
+<body>
+
+    <div class="jumbotron jumbotron-fluid" style="background-color: <%= statColor %>">
+        <div class="container">
+                <% if (mainStatus == 'Green'){ %>
+     
+                    <h2 class='dispaly-4'>Success, auto test passed!</h2>
+                    <hr class="my-4">
+                    <h3>Status: <%= mainStatus %></h3>
+                    <h3><%= detailedStatus %></h3>
+        
+                <% } else if (mainStatus == 'Orange') { %>
+ 
+                    <h2>Alert, warning on auto test!</h2>
+                    <h3>Status: <%= mainStatus %></h3>
+                    <h3><%= detailedStatus %></h3>
+                <% } else { %>
+   
+                    <h2>Failed, unable to perform the test!</h2>
+                    <h3>Status: <%= mainStatus %></h3>
+                    <h3><%= detailedStatus %></h3>
+                <% } %>
+                <p></p>
+        </div>
+    </div>
+
+    <div class='container'>
+        
+        <div class='second-cont'>
+            <h1>Jasper REST API Caller</h1>
+            <form action="/" method="post">
+                
+                <div class="form-group">
+                    <label for="url">URL</label>
+                    <input type="text" class='form-control' name="base_url" id="url" aria-describedby="urlHelp" value="https://restapi3.jasper.com/rws/api/v1/devices">
+                    <small id="urlHelp" class="form-text text-muted">Feel free to edit the URL to your heart's content.</small>
+            
+                
+                    <label for='username'>Username</label>
+                    <input type="text" name="name" class='form-control' id='username' value="Enter your Jasper username">
+            
+                
+                    <label for='api-key'>API Key</label>
+                    <input type="password" class='form-control' aria-describedby="keyHelp" name="apiKey" id="api-key">
+                    <small id="keyHelp" class="form-text text-muted">Enter you API key</small>
+            
+                
+                    <label for='ICCID'>ICCID</label>
+                    <input type="text" class='form-control' name="sim" id="ICCID" value="89462036051001561445">
+            
+                
+                    <label for='method'>Chose Method</label>
+                    <select name="method" class='form-control' id="method" value="GET">
+                        <option value="GET">GET</option>
+                        <option value="PUT">PUT</option>
+                    </select>
+                
+                
+                    <label for="usage">Select Call Type</label>
+                    <select name="sel" class='form-control dev' id='usage'>
+                        <option value="ctdUsages">ctdUsages</option>
+                        <option value="Devices">Device</option>
+                        <option value="editDevice">Edit Device</option>
+                    </select>
+                </div>
+
+                    <input type="submit" class="btn btn-primary" value="Send Request">
+                
+        
+            </form>
+        </div>
+
+    </div>
+    <script>
+        $('select.dev').change(function(){
+            if($('select.dev option:selected').text() == "Edit Device"){
+                    $('select.dev')
+                    .after("<input type='text' style='margin-top: 10px; display: none' class='form-control pop-up' name='property' placeholder='Enter the property you want to change'></input><input type='text' style='margin-top: 10px; display: none' class='form-control pop-up' name='propValue' placeholder='Enter the new value'></input>")
+                    $('select.dev').next('input.pop-up').slideDown('medium').next('input.pop-up').slideDown('medium');
+    
+            }else{
+                    $('.pop-up').remove();
+            }
+        }); 
+
+    </script>
+<%- include('footer.ejs') -%>
+
+
