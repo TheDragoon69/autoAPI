@@ -1,4 +1,8 @@
-
+body{
+    -webkit-transform: scale(0.9);
+       -moz-transform: scale(0.9);
+            transform: scale(0.9);
+}
 
 .container {
     margin-top: 1%;
@@ -8,9 +12,15 @@
 
 .jumbotron {
     margin: 0;
-    height: 330px;
+    padding-top: 30px;
+    height: 280px;
     text-align: center;
     color: white;
+}
+
+hr {
+    color: #fff;
+    border-top: 1px #fff solid;
 }
 
 .jumbotron .container {
@@ -20,7 +30,7 @@
 
 
 .second-cont {
-    width: 400px;
+    width: 420px;
     margin-left: 20%;
 }
 

@@ -21,7 +21,11 @@ let mainStatus = '';
 let detailedStatus = '';
 let statColor = '';
 
+//Seting var for countdown timer
+let time = '';
+
 //Calling the automated test
+
 automatedCall();
 
 //To retrieve index.html
@@ -32,7 +36,8 @@ app.get("/", function(req, res){
     {
        mainStatus: mainStatus,
        detailedStatus: detailedStatus,
-       statColor: statColor
+       statColor: statColor,
+       time: time
     });
  
 });
@@ -56,8 +61,6 @@ app.post("/", function(req, res){
 
     //url construction
     let url = baseUri+"/"+iccid;
-
-    console.log(coded_auth);
 
     //If ctdUsages is selected then add it to the url
     if(task == "ctdUsages"){
@@ -109,7 +112,6 @@ function automatedCall(){
     function(error, response){
         let data = JSON.parse(response.body);
         if(response.statusCode == 200 && data.status == 'ACTIVATED'){
-            console.log(data.status);
             mainStatus = 'Green';
             statColor = '#81CD61';
             detailedStatus = '89462036051001561445 is in ACTIVATED state!';
@@ -122,8 +124,29 @@ function automatedCall(){
             statColor = '#E5493A';
             detailedStatus = 'Call did not go through, error: ' + response.statusCode;
         }
-        console.log(mainStatus);
     });
+
+        let sec = 1;
+        let min = 40;
+        let countDown = setInterval(function(){
+        if(sec >= 0 && min >=0){
+
+            if(sec < 10){
+                time = min+":0"+sec;
+            }else{
+                time = min+":"+sec;
+            }
+            sec--;
+            if(sec<0){
+                min--;
+                sec = 59;
+            }
+
+        }else{
+            clearInterval(countDown);
+        }
+
+        }, 1000);
     
     setTimeout(automatedCall, 100000);
 }
